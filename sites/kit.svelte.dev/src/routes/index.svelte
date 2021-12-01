@@ -43,7 +43,7 @@
 	function updateAdapter() {
 		[host, adapter] = adapters[i];
 		i = (i + 1) % adapters.length;
-		setTimeout(updateAdapter, 1000);
+		setTimeout(updateAdapter, 1500);
 	}
 
 	updateAdapter();

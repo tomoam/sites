@@ -8,7 +8,7 @@
 
 <script>
 	import Machine from '$img/svelte-kit-machine.webp?w=1440;800&format=avif;webp;png&meta'
-	import PageSpeed from '$img/page-speed.png?format=avif;webp;png&meta&quality=95'
+	import PageSpeed from '$img/page-speed.webp?format=avif;webp;png&meta'
 	import { Blurb, Hero } from '@sveltejs/site-kit';
 
 	const groupBy = (items, key) => items.reduce(
@@ -140,7 +140,7 @@ npm run dev -- --open
 	<div style="margin:1em 0">
 		<picture>
 			{#each imageGroups as imageGroup}
-				<source type={'image/' + imageGroup[0].format} srcset={imageGroup.map(image => `${image.src} ${image.width === 788 ? '1x' : '2x'}`).join(', ')}/> 
+				<source type={'image/' + imageGroup[0].format} srcset={imageGroup.map(image => `${image.src} ${image.width === 787 ? '1x' : '2x'}`).join(', ')}/> 
 				{#if imageGroup[0].format === 'png'}
 					<img src={imageGroup[0].src} alt="Perfect Google Page Speed Score of 100" />
 				{/if}

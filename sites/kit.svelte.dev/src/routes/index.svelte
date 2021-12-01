@@ -8,7 +8,7 @@
 
 <script>
 	import Machine from '$img/svelte-kit-machine.webp?w=1440;800&format=avif;webp;png&meta'
-	import PageSpeed from '$img/page-speed.png?format=avif;webp;png&meta'
+	import PageSpeed from '$img/page-speed.png?format=avif;webp;png&meta&quality=95'
 	import { Blurb, Hero } from '@sveltejs/site-kit';
 
 	const groupBy = (items, key) => items.reduce(

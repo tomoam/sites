@@ -147,16 +147,6 @@ npm run dev -- --open
 			{/each}
 		</picture>
 	</div>
-
-	<h5 style="margin-bottom:0.5em">Compare to another site:</h5>
-	<select bind:value={url} style="padding:0.8rem">
-		<option value="https://reactjs.org/">https://reactjs.org/</option>
-		<option value="https://vuejs.org/">https://vuejs.org/</option>
-		<option value="https://nextjs.org/">https://nextjs.org/</option>
-		<option value="https://ember.com/">https://ember.com/</option>
-		<option value="https://angular.io/">https://angular.io/</option>
-    </select>
-    <button class="btn" outline on:click={openPageSpeed} style="margin:0">Go</button>
 </div>
 
 <div class="section adapters">

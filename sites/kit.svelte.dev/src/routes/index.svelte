@@ -163,7 +163,7 @@ export default &#123;
 }</code></pre>
 </div>
 
-<div class="section bullet-container">
+<div id="features" class="section">
 	<div>
 		<h4>🛠️ SSR, SPA, SSG, and In-Between</h4>
 		<p>Generate HTML on the server or client at build-time or run-time.</p>
@@ -279,7 +279,7 @@ export default &#123;
 		margin-bottom: 0.8rem;
 	}	
 
-	.bullet-container {
+	#features {
  		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -288,7 +288,7 @@ export default &#123;
   			". ."
 			". .";
 	}
-	.bullet-container h4 {
+	#features h4 {
 		margin-bottom: 0.8rem;
 	}
 </style>

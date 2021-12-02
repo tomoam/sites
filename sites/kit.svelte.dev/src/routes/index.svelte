@@ -189,7 +189,7 @@ export default &#123;
 	</div>
 
 	<div>
-		<h4>📦 SEO Optimized</h4>
+		<h4>🔍 SEO Optimized</h4>
 		<p>SSR and dynamic rendering for full seach engine support.</p>
 		<a href="/docs#ssr-and-javascript">Documentation →</a>
 	</div>
@@ -210,6 +210,26 @@ export default &#123;
 		<h4>🏗 Build Your Backend</h4>
 		<p>Build API endpoints in SvelteKit or fetch data from another server.</p>
 		<a href="/docs#routing-endpoints">Documentation →</a>
+	</div>
+
+
+	<div>
+		<h4>📶 Offline Support</h4>
+		<p>Service worker support for building offline functionality and PWAs.</p>
+		<a href="/docs#modules-$service-worker">Documentation →</a>
+	</div>
+
+
+	<div>
+		<h4>💨 Prefetching</h4>
+		<p>Fetch resources for a page as soon as the user hovers a link.</p>
+		<a href="/docs#anchor-options-sveltekit-prefetch">Documentation →</a>
+	</div>
+
+	<div>
+		<h4>📦 Library Packaging</h4>
+		<p>Preview reusable components in the browser and package them up.</p>
+		<a href="/docs#packaging">Documentation →</a>
 	</div>
 
 	<div>
@@ -260,13 +280,13 @@ export default &#123;
 	}	
 
 	.bullet-container {
- 		display: grid; 
+ 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr;
-		gap: 5em 5em; 
-		grid-template-areas: 
+		grid-template-rows: 1fr 1fr 1fr 1fr;
+		gap: 3.5em 5em;
+		grid-template-areas:
   			". ."
-			". ."; 
+			". .";
 	}
 	.bullet-container h4 {
 		margin-bottom: 0.8rem;

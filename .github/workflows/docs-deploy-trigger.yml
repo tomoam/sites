@@ -3,6 +3,9 @@ name: 'Deploy docs'
 on:
   workflow_dispatch:
     inputs:
+      org:
+        description: 'the target org for the docs'
+        required: true
       repo:
         description: 'the target repo for the docs'
         required: true
@@ -25,10 +28,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: publish
         id: projects
-        uses: sveltejs/action-deploy-docs@main
+        uses: tomoam/action-deploy-docs@main
         with:
+          org: ${{github.event.inputs.org}}
           repo: ${{github.event.inputs.repo}}
           branch: ${{github.event.inputs.branch}}
           docs_path: ${{github.event.inputs.docs_path}}
           pkg_path: ${{github.event.inputs.pkg_path}}
+          cf_acc_id: ${{ secrets.CF_ACC_ID }}
+          cf_ns_id: ${{ secrets.CF_NS_ID }}
           cf_token: ${{ secrets.CLOUDFLARE_TOKEN_API_KV }}
+

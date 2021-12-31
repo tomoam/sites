@@ -50,7 +50,7 @@
 		<svelte:fragment slot="nav-right">
 			<NavItem external="https://kit.svelte.jp">SvelteKit</NavItem>
 
-			<NavItem external="chat" title="Discord Chat">
+			<NavItem external="/chat" title="Discord Chat">
 				<span class="small">Discord</span>
 				<span class="large"><Icon name="message-square" /></span>
 			</NavItem>

@@ -1,15 +1,14 @@
 <script context="module">
-	import { API_BASE } from '../../_env';
+	import { API_BASE } from '$lib/env';
 
-	export async function load({ fetch, page: { params } }) {
+	export async function load({ fetch, params }) {
 		const res = await fetch(`${API_BASE}/docs/svelte/blog/${params.slug}`);
 
 		if (!res.ok) return { status: 404, error: 'That post could not be found' };
 
-		const data = await res.json()
-		if (!data.draft) return { props: { post: data }};
-		else return { status: 404, error: 'That post could not be found' };
-
+		const data = await res.json();
+		if (!data.draft) return { props: { post: data } };
+		return { status: 404, error: 'That post could not be found' };
 	}
 </script>
 
@@ -63,15 +62,6 @@
 		border-top: var(--border-w) solid #6767785b;
 		font-size: var(--h6);
 		text-transform: uppercase;
-	}
-
-	.byline a {
-		/* border-bottom: none; */
-		/* font-weight: 600; */
-	}
-
-	.byline a:hover {
-		/* border-bottom: 2px solid var(--prime); */
 	}
 
 	.post h1 {

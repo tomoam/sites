@@ -8,8 +8,8 @@
 	let active_el;
 
 	onMount(() => {
-		active_el.scrollIntoView({block: 'center'});
-	})
+		active_el.scrollIntoView({ block: 'center' });
+	});
 </script>
 
 <ul class="examples-toc">
@@ -34,7 +34,7 @@
 						<span>{example.name}</span>
 					</a>
 					{#if example.slug === active_section}
-						<a bind:this={active_el} href="repl/{example.slug}" class="repl-link">REPL</a>
+						<a bind:this={active_el} href="/repl/{example.slug}" class="repl-link">REPL</a>
 					{/if}
 				</div>
 			{/each}

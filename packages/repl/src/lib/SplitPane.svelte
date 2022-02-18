@@ -26,27 +26,24 @@
 	function setPos(event) {
 		const { top, left } = refs.container.getBoundingClientRect();
 
-		const px = type === 'vertical'
-			? (event.clientY - top)
-			: (event.clientX - left);
+		const px = type === 'vertical' ? event.clientY - top : event.clientX - left;
 
-		pos = 100 * px / size;
+		pos = (100 * px) / size;
 		dispatch('change');
 	}
 
 	function setTouchPos(event) {
 		const { top, left } = refs.container.getBoundingClientRect();
 
-		const px = type === 'vertical'
-			? (event.touches[0].clientY - top)
-			: (event.touches[0].clientX - left);
+		const px =
+			type === 'vertical' ? event.touches[0].clientY - top : event.touches[0].clientX - left;
 
-		pos = 100 * px / size;
+		pos = (100 * px) / size;
 		dispatch('change');
 	}
 
 	function drag(node, callback) {
-		const mousedown = event => {
+		const mousedown = (event) => {
 			if (event.which !== 1) return;
 
 			event.preventDefault();
@@ -62,7 +59,7 @@
 
 			window.addEventListener('mousemove', callback, false);
 			window.addEventListener('mouseup', onmouseup, false);
-		}
+		};
 
 		node.addEventListener('mousedown', mousedown, false);
 
@@ -74,7 +71,7 @@
 	}
 
 	function touchDrag(node, callback) {
-		const touchdown = event => {
+		const touchdown = (event) => {
 			if (event.targetTouches.length > 1) return;
 
 			event.preventDefault();
@@ -90,7 +87,7 @@
 
 			window.addEventListener('touchmove', callback, false);
 			window.addEventListener('touchend', ontouchend, false);
-		}
+		};
 
 		node.addEventListener('touchstart', touchdown, false);
 
@@ -104,6 +101,29 @@
 	$: side = type === 'horizontal' ? 'left' : 'top';
 	$: dimension = type === 'horizontal' ? 'width' : 'height';
 </script>
+
+<div class="container" bind:this={refs.container} bind:clientWidth={w} bind:clientHeight={h}>
+	<div class="pane" style="{dimension}: {pos}%;">
+		<slot name="a" />
+	</div>
+
+	<div class="pane" style="{dimension}: {100 - pos}%;">
+		<slot name="b" />
+	</div>
+
+	{#if !fixed}
+		<div
+			class="{type} divider"
+			style="{side}: calc({pos}% - 8px)"
+			use:drag={setPos}
+			use:touchDrag={setTouchPos}
+		/>
+	{/if}
+</div>
+
+{#if dragging}
+	<div class="mousecatcher" />
+{/if}
 
 <style>
 	.container {
@@ -126,7 +146,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(255,255,255,.01);
+		background: rgba(255, 255, 255, 0.01);
 	}
 
 	.divider {
@@ -170,38 +190,28 @@
 		height: 1px;
 	}
 
-	.left, .right, .divider {
+	.left,
+	.right,
+	.divider {
 		display: block;
 	}
 
-	.left, .right {
+	.left,
+	.right {
 		height: 100%;
 		float: left;
 	}
 
-	.top, .bottom {
+	.top,
+	.bottom {
 		position: absolute;
 		width: 100%;
 	}
 
-	.top { top: 0; }
-	.bottom { bottom: 0; }
+	.top {
+		top: 0;
+	}
+	.bottom {
+		bottom: 0;
+	}
 </style>
-
-<div class="container" bind:this={refs.container} bind:clientWidth={w} bind:clientHeight={h}>
-	<div class="pane" style="{dimension}: {pos}%;">
-		<slot name="a"></slot>
-	</div>
-
-	<div class="pane" style="{dimension}: {100 - (pos)}%;">
-		<slot name="b"></slot>
-	</div>
-
-	{#if !fixed}
-		<div class="{type} divider" style="{side}: calc({pos}% - 8px)" use:drag={setPos} use:touchDrag={setTouchPos}></div>
-	{/if}
-</div>
-
-{#if dragging}
-	<div class="mousecatcher"></div>
-{/if}

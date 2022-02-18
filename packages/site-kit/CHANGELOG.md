@@ -1,5 +1,28 @@
 # @sveltejs/site-kit changelog
 
+## 2.0.3
+
+- Revert CSS logical properties change, which breaks in some browsers ([#303](https://github.com/sveltejs/sites/pull/303))
+
+## 2.0.2
+
+- Add `id` attributes to `<h2>` elements, instead of using offset anchors
+
+## 2.0.1
+
+- Remove `z-index` from `<ul>` in nav component
+
+## 2.0.0
+
+- New `latest` version
+
+## 2.0.0-next.7
+
+- Rebuilt using SvelteKit
+- Shipped with declaration files
+- Added `<SkipLink>`
+- Various
+
 ## 2.0.0-next.6
 
 - Remove some problematic CSS

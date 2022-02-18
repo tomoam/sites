@@ -1,9 +1,9 @@
 <script context="module">
-	import { API_BASE } from '../../_env';
+	import { API_BASE } from '$lib/env';
 
 	export async function load({ fetch }) {
-		const faqs = await fetch(`${API_BASE}/docs/svelte/faq?content`).then(r => r.json());
-		
+		const faqs = await fetch(`${API_BASE}/docs/svelte/faq?content`).then((r) => r.json());
+
 		return {
 			props: { faqs },
 			maxage: 60
@@ -12,7 +12,8 @@
 </script>
 
 <script>
-	import { Permalink } from "@sveltejs/site-kit";
+	import { Permalink } from '@sveltejs/site-kit';
+	import '@sveltejs/site-kit/code.css';
 
 	export let faqs;
 </script>
@@ -32,7 +33,7 @@
 			<h2>
 				<span id={faq.slug} class="offset-anchor" />
 				{faq.title}
-				<Permalink href="faq#{faq.slug}" />
+				<Permalink href="/faq#{faq.slug}" />
 			</h2>
 			{@html faq.content}
 		</article>
@@ -59,7 +60,6 @@
 		margin: 0;
 		top: 0;
 		background: transparent;
-		color: white;
 	}
 
 	.faqs :global(pre) {

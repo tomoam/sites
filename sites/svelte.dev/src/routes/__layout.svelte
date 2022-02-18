@@ -2,8 +2,8 @@
 	import '@sveltejs/site-kit/base.css';
 	import { setContext } from 'svelte';
 	import { page, navigating, session } from '$app/stores';
-	import { Icon, Icons, Nav, NavItem } from '@sveltejs/site-kit';
-	import PreloadingIndicator from '../components/PreloadingIndicator.svelte';
+	import { Icon, Icons, Nav, NavItem, SkipLink } from '@sveltejs/site-kit';
+	import PreloadingIndicator from '$lib/components/PreloadingIndicator.svelte';
 
 	setContext('app', {
 		login: () => {
@@ -36,21 +36,22 @@
 	<PreloadingIndicator />
 {/if}
 
-{#if $page.path !== '/repl/embed'}
-	<Nav {page} logo="svelte-logo-horizontal.svg">
+{#if $page.url.pathname !== '/repl/embed'}
+	<SkipLink href="#main" />
+	<Nav {page} logo="/svelte-logo-horizontal.svg">
 		<svelte:fragment slot="nav-center">
-			<NavItem segment="tutorial">Tutorial</NavItem>
-			<NavItem segment="docs">Docs</NavItem>
-			<NavItem segment="examples">Examples</NavItem>
-			<NavItem segment="repl">REPL</NavItem>
-			<NavItem segment="blog">Blog</NavItem>
-			<NavItem segment="faq">FAQ</NavItem>
+			<NavItem href="/tutorial">Tutorial</NavItem>
+			<NavItem href="/docs">Docs</NavItem>
+			<NavItem href="/examples">Examples</NavItem>
+			<NavItem href="/repl">REPL</NavItem>
+			<NavItem href="/blog">Blog</NavItem>
+			<NavItem href="/faq">FAQ</NavItem>
 		</svelte:fragment>
 
 		<svelte:fragment slot="nav-right">
 			<NavItem external="https://kit.svelte.dev">SvelteKit</NavItem>
 
-			<NavItem external="chat" title="Discord Chat">
+			<NavItem external="/chat" title="Discord Chat">
 				<span class="small">Discord</span>
 				<span class="large"><Icon name="message-square" /></span>
 			</NavItem>
@@ -63,7 +64,7 @@
 	</Nav>
 {/if}
 
-<main>
+<main id="main">
 	<slot />
 </main>
 
@@ -73,7 +74,6 @@
 		margin: 0 auto;
 		/* padding: var(--nav-h) var(--side-nav) 0 var(--side-nav); */
 		padding: var(--nav-h) 0 0 0;
-		overflow-x: hidden;
 	}
 
 	.small {

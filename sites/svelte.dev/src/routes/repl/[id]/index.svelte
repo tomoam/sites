@@ -1,9 +1,19 @@
 <script context="module">
-	export function load({ page: { params, query } }) {
+	export async function load({ params, fetch, url }) {
+		const res = await fetch(`/repl/${params.id}.json`);
+
+		if (!res.ok) {
+			return {
+				status: res.status
+			};
+		}
+
+		const gist = await res.json();
+
 		return {
 			props: {
-				version: query.get('version') || '3',
-				id: params.id
+				gist,
+				version: url.searchParams.get('version') || '3'
 			}
 		};
 	}
@@ -16,24 +26,14 @@
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
 	import { mapbox_setup } from '../../../config';
-	import InputOutputToggle from '../../../components/Repl/InputOutputToggle.svelte';
 	import AppControls from './_components/AppControls/index.svelte';
 
 	export let version;
-	export let id;
+	export let gist;
 
 	let repl;
-	let gist = {
-		id: null,
-		name: null,
-		owner: null,
-		relaxed: false,
-		components: []
-	};
-	let name = 'Loading...';
+	let name = gist.name;
 	let zen_mode = false;
-	let width = browser ? window.innerWidth : 1000;
-	let checked = false;
 	let modified_count = 0;
 
 	function update_query_string(version) {
@@ -41,36 +41,12 @@
 
 		if (version !== 'latest') params.push(`version=${version}`);
 
-		const url = params.length > 0 ? `/repl/${id}?${params.join('&')}` : `/repl/${id}`;
+		const url = params.length > 0 ? `/repl/${gist.id}?${params.join('&')}` : `/repl/${gist.id}`;
 
 		history.replaceState({}, 'x', url);
 	}
 
 	$: if (typeof history !== 'undefined') update_query_string(version);
-
-	async function fetch_gist(id) {
-		if (gist.id === id) {
-			// if the id changed because we just forked, don't refetch
-			return;
-		}
-
-		const res = await fetch(`/repl/${id}.json`);
-
-		if (!res.ok) {
-			console.warn('TODO: show error');
-			return;
-		}
-
-		gist = await res.json();
-
-		name = gist.name;
-
-		repl.set({
-			components: gist.components
-		});
-	}
-
-	$: if (browser) fetch_gist(id);
 
 	onMount(() => {
 		if (version !== 'local') {
@@ -80,6 +56,10 @@
 					version = pkg.version;
 				});
 		}
+
+		repl.set({
+			components: gist.components
+		});
 	});
 
 	function handle_fork(event) {
@@ -97,42 +77,32 @@
 			? `${location.origin}/repl/local`
 			: `https://unpkg.com/svelte@${version}`;
 
-	$: mobile = width < 540;
-
 	$: relaxed = gist.relaxed || ($session.user && $session.user.id === gist.owner);
 </script>
 
 <svelte:head>
 	<title>{name} • REPL • Svelte</title>
 
-	<meta name="twitter:title" content="Svelte REPL" />
+	<meta name="twitter:title" content="{gist.name} • REPL • Svelte" />
 	<meta name="twitter:description" content="Cybernetically enhanced web apps" />
 	<meta name="Description" content="Interactive Svelte playground" />
 </svelte:head>
 
-<svelte:window bind:innerWidth={width} />
-
-<div class="repl-outer {zen_mode ? 'zen-mode' : ''}" class:mobile>
+<div class="repl-outer {zen_mode ? 'zen-mode' : ''}">
 	<AppControls {gist} {repl} bind:name bind:zen_mode bind:modified_count on:forked={handle_fork} />
 
 	{#if browser}
-		<div class="viewport" class:offset={checked}>
-			<Repl
-				bind:this={repl}
-				{svelteUrl}
-				{relaxed}
-				fixed={mobile}
-				injectedJS={mapbox_setup}
-				showModified
-				on:change={handle_change}
-				on:add={handle_change}
-				on:remove={handle_change}
-			/>
-		</div>
-
-		{#if mobile}
-			<InputOutputToggle bind:checked />
-		{/if}
+		<Repl
+			bind:this={repl}
+			{svelteUrl}
+			{relaxed}
+			injectedJS={mapbox_setup}
+			showModified
+			showAst
+			on:change={handle_change}
+			on:add={handle_change}
+			on:remove={handle_change}
+		/>
 	{/if}
 </div>
 
@@ -151,33 +121,17 @@
 		flex-direction: column;
 	}
 
-	.viewport {
-		width: 100%;
-		height: 100%;
-	}
-
-	.mobile .viewport {
-		width: 200%;
-		height: calc(100% - 42px);
-		transition: transform 0.3s;
-		flex: 1;
-	}
-
-	.mobile .offset {
-		transform: translate(-50%, 0);
-	}
-
 	/* temp fix for #2499 and #2550 while waiting for a fix for https://github.com/sveltejs/svelte-repl/issues/8 */
 
-	.viewport :global(.tab-content),
-	.viewport :global(.tab-content.visible) {
+	.repl-outer :global(.tab-content),
+	.repl-outer :global(.tab-content.visible) {
 		pointer-events: all;
 		opacity: 1;
 	}
-	.viewport :global(.tab-content) {
+	.repl-outer :global(.tab-content) {
 		visibility: hidden;
 	}
-	.viewport :global(.tab-content.visible) {
+	.repl-outer :global(.tab-content.visible) {
 		visibility: visible;
 	}
 

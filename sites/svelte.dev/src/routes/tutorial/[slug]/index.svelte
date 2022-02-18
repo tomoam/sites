@@ -1,8 +1,8 @@
 <script context="module">
-	import { API_BASE } from '../../../_env';
+	import { API_BASE } from '$lib/env';
 
-	export async function load({ page }) {
-		const tutorial = await fetch(`${API_BASE}/docs/svelte/tutorial/${page.params.slug}`);
+	export async function load({ params }) {
+		const tutorial = await fetch(`${API_BASE}/docs/svelte/tutorial/${params.slug}`);
 
 		if (!tutorial.ok) {
 			return {
@@ -12,7 +12,7 @@
 		}
 
 		return {
-			props: { tutorial: await tutorial.json(), slug: page.params.slug },
+			props: { tutorial: await tutorial.json(), slug: params.slug },
 			maxage: 60
 		};
 	}
@@ -21,10 +21,10 @@
 <script>
 	import '@sveltejs/site-kit/code.css';
 	import { browser } from '$app/env';
-	import Repl from '@sveltejs/repl';
 	import { getContext } from 'svelte';
 
-	import ScreenToggle from '../../../components/ScreenToggle.svelte';
+	import Repl from '@sveltejs/repl';
+	import ScreenToggle from '$lib/components/ScreenToggle.svelte';
 	import TableOfContents from './_TableOfContents.svelte';
 
 	import {
@@ -68,15 +68,8 @@
 	// TODO is there a non-hacky way to trigger scroll when chapter changes?
 	$: if (scrollable) tutorial, scrollable.scrollTo(0, 0);
 
-	// TODO: this will need to be changed to the master branch, and probably should be dynamic instead of included
-	//   here statically
-	const tutorial_repo_link =
-		'https://github.com/sveltejs/svelte/tree/master/documentation/tutorial';
-
 	$: selected = lookup.get(slug);
-	$: improve_link = '';
-
-	//`${tutorial_repo_link}/${selected.chapter.section_dir}/${selected.chapter.chapter_dir}`;
+	$: improve_link = `https://github.com/sveltejs/svelte/tree/master/site/content/tutorial/${tutorial.dir}`;
 
 	const clone = (file) => ({
 		name: file.name.replace(/.\w+$/, ''),
@@ -124,8 +117,8 @@
 	<title>{selected.section.name} / {selected.chapter.name} • Svelte Tutorial</title>
 
 	<meta name="twitter:title" content="Svelte tutorial" />
-	<meta name="twitter:description" content="{selected.section.title} / {selected.chapter.title}" />
-	<meta name="Description" content="{selected.section.title} / {selected.chapter.title}" />
+	<meta name="twitter:description" content="{selected.section.name} / {selected.chapter.name}" />
+	<meta name="Description" content="{selected.section.name} / {selected.chapter.name}" />
 </svelte:head>
 
 <svelte:window bind:innerWidth={width} />
@@ -255,6 +248,8 @@
 	}
 
 	.chapter-markup :global(a) {
+		transition: color 0.2s;
+		text-decoration: underline;
 		color: var(--sidebar-text);
 	}
 
@@ -295,6 +290,7 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.15);
 		padding: 1em 0 0 0;
 		display: flex;
+		align-items: center;
 	}
 
 	.show {

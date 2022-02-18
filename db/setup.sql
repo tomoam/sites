@@ -6,6 +6,7 @@ drop index if exists gist_owner_idx;
 drop table if exists public.user;
 drop table if exists public.session;
 drop table if exists public.gist;
+drop table if exists public.todo;
 
 drop function if exists public.get_user;
 drop function if exists public.gist_create;
@@ -36,8 +37,17 @@ create table public.gist (
 	created_at timestamptz default now(),
 	name text,
 	files json,
+	userid int8,
 	updated_at timestamptz,
-	userid int8
+	deleted_at timestamptz
+);
+
+create table public.todo (
+	uid uuid default extensions.uuid_generate_v4() not null primary key,
+	created_at timestamptz default now(),
+	guestid uuid not null,
+	text text,
+	done boolean
 );
 
 -- foreign key relations
@@ -46,6 +56,7 @@ alter table public.session add constraint session_userid_fkey foreign key (useri
 
 -- indexes
 create index gist_owner_idx on public.gist using btree (userid);
+create index todo_owner_idx on public.todo using btree (guestid);
 
 -- functions
 create or replace function public.get_user (sessionid uuid)
@@ -65,6 +76,7 @@ as $$
 $$;
 
 create or replace function public.gist_list (
+	list_search text,
 	list_userid int8,
 	list_count int4,
 	list_start int4
@@ -81,7 +93,7 @@ as $$
 		return query
 		select gist.id, gist.name, gist.created_at, gist.updated_at
 		from gist
-		where gist.userid = list_userid
+		where gist.userid = list_userid and gist.deleted_at is null and gist.name ilike ('%' || list_search || '%')
 		order by coalesce(gist.updated_at, gist.created_at) desc
 		limit list_count + 1
 		offset list_start;
@@ -103,14 +115,14 @@ as $$
 $$;
 
 create or replace function public.gist_destroy (
-	gist_id uuid,
+	gist_ids uuid[],
 	gist_userid int8
 )
 returns void
 language plpgsql volatile
 as $$
 	begin
-		delete from gist where id = gist_id and userid = gist_userid;
+		update gist set deleted_at = now() where id = any(gist_ids) and userid = gist_userid;
 	end;
 $$;
 
@@ -128,7 +140,7 @@ as $$
 	begin
 		update gist
 			set name = gist_name, files = gist_files, updated_at = now()
-			where id = gist_id and userid = gist_userid
+			where id = gist_id and userid = gist_userid and deleted_at is null
 			returning id, name, files, userid into ret;
 
 		return ret;

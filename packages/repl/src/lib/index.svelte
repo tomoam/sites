@@ -2,6 +2,7 @@
 	import { setContext, createEventDispatcher } from 'svelte';
 	import { writable } from 'svelte/store';
 	import SplitPane from './SplitPane.svelte';
+	import InputOutputToggle from './InputOutputToggle.svelte';
 	import ComponentSelector from './Input/ComponentSelector.svelte';
 	import ModuleEditor from './Input/ModuleEditor.svelte';
 	import Output from './Output/index.svelte';
@@ -19,6 +20,7 @@
 	export let injectedCSS = '';
 	export let theme = 'svelte';
 	export let showModified = false;
+	export let showAst = false;
 
 	const historyMap = new Map();
 
@@ -84,6 +86,8 @@
 	const components = writable([]);
 	const selected = writable(null);
 	const bundle = writable(null);
+	const cursor_index = writable(0);
+	const toggleable = writable(false);
 
 	const compile_options = writable({
 		generate: 'dom',
@@ -97,6 +101,9 @@
 
 	let module_editor;
 	let output;
+
+	let width = 0;
+	let show_output = false;
 
 	let current_token;
 	async function rebundle() {
@@ -117,6 +124,10 @@
 		selected,
 		bundle,
 		compile_options,
+
+		cursor_index,
+		toggleable,
+		module_editor_ready,
 
 		rebundle,
 
@@ -171,6 +182,9 @@
 
 		register_module_editor(editor) {
 			module_editor = editor;
+			module_editor.cursorIndex.subscribe((index) => {
+				cursor_index.set(index);
+			});
 			fulfil_module_editor_ready();
 		},
 
@@ -181,6 +195,15 @@
 
 		request_focus() {
 			module_editor.focus();
+		},
+
+		mark_text({ from, to }) {
+			module_editor.unmarkText();
+			module_editor.markText({ from, to });
+		},
+
+		unmark_text() {
+			module_editor.unmarkText();
 		}
 	});
 
@@ -240,25 +263,34 @@
 	$: if (output && $selected) {
 		output.update($selected, $compile_options);
 	}
+
+	$: mobile = width < 540;
+
+	$: $toggleable = mobile && orientation === 'columns';
 </script>
 
 <svelte:window on:beforeunload={beforeUnload} />
 
-<div class="container" class:orientation>
-	<SplitPane
-		type={orientation === 'rows' ? 'vertical' : 'horizontal'}
-		pos={fixed ? fixedPos : orientation === 'rows' ? 50 : 60}
-		{fixed}
-	>
-		<section slot="a">
-			<ComponentSelector show_modified={showModified} {handle_select} on:add on:remove />
-			<ModuleEditor errorLoc={sourceErrorLoc} {theme} />
-		</section>
+<div class="container" class:toggleable={$toggleable} bind:clientWidth={width}>
+	<div class="viewport" class:output={show_output}>
+		<SplitPane
+			type={orientation === 'rows' ? 'vertical' : 'horizontal'}
+			pos={(mobile || fixed) ? fixedPos : orientation === 'rows' ? 50 : 60}
+			fixed={fixed}
+		>
+			<section slot="a">
+				<ComponentSelector show_modified={showModified} {handle_select} on:add on:remove />
+				<ModuleEditor errorLoc={sourceErrorLoc} {theme} />
+			</section>
 
-		<section slot="b" style="height: 100%;">
-			<Output {svelteUrl} status={status_visible && status} {embedded} {relaxed} {injectedJS} {injectedCSS} {theme} />
-		</section>
-	</SplitPane>
+			<section slot="b" style="height: 100%;">
+				<Output {svelteUrl} status={status_visible && status} {embedded} {relaxed} {injectedJS} {injectedCSS} {theme} {showAst} />
+			</section>
+		</SplitPane>
+	</div>
+	{#if $toggleable}
+		<InputOutputToggle bind:checked={show_output}/>
+	{/if}
 </div>
 
 <style>
@@ -266,6 +298,7 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+		background: white;
 	}
 
 	.container :global(section) {
@@ -287,5 +320,19 @@
 	.container :global(section) > :global(*):last-child {
 		width: 100%;
 		height: 100%;
+	}
+
+	.viewport {
+		height: 100%;
+	}
+
+	.toggleable .viewport {
+		width: 200%;
+		height: calc(100% - 42px);
+		transition: transform 0.3s;
+	}
+
+	.toggleable .viewport.output {
+		transform: translate(-50%);
 	}
 </style>

@@ -3,10 +3,11 @@ import { client } from './client.js';
 /** @typedef {import('./types').UserID} UserID */
 /** @typedef {import('./types').Gist} Gist */
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 90;
 
-export async function list(user, offset) {
+export async function list(user, { offset, search }) {
 	const { data, error } = await client.rpc('gist_list', {
+		list_search: search || '',
 		list_userid: user.id,
 		list_count: PAGE_SIZE,
 		list_start: offset
@@ -15,7 +16,7 @@ export async function list(user, offset) {
 	if (error) throw new Error(error.message);
 
 	// normalize IDs
-	data.forEach(gist => {
+	data.forEach((gist) => {
 		gist.id = gist.id.replace(/-/g, '');
 	});
 
@@ -31,8 +32,6 @@ export async function list(user, offset) {
  * @returns {Gist}
  */
 export async function create(user, gist) {
-	console.log(user, gist);
-
 	const { data, error } = await client.rpc('gist_create', {
 		name: gist.name,
 		files: gist.files,
@@ -54,7 +53,8 @@ export async function read(id) {
 	const { data, error } = await client
 		.from('gist')
 		.select('id,name,files,userid')
-		.eq('id', id);
+		.eq('id', id)
+		.is('deleted_at', null);
 
 	if (error) throw new Error(error.message);
 	return data[0];
@@ -82,14 +82,13 @@ export async function update(user, gistid, gist) {
 }
 
 /**
- * @param {User} user
- * @param {Gist} gist
- * @returns {void}
+ * @param {number} userid
+ * @param {string[]} ids
  */
-export async function destroy(user, gist) {
-	const { error } = await client.rpc('gist_destroy', {
-		gist_id: gist.id,
-		gist_userid: user.id
+export async function destroy(userid, ids) {
+	const { data, error } = await client.rpc('gist_destroy', {
+		gist_ids: ids,
+		gist_userid: userid
 	});
 
 	if (error) {

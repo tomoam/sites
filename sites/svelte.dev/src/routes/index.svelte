@@ -82,17 +82,15 @@
 		</div>
 
 		<div slot="how">
-			<pre><code>
-npx degit <a href="https://github.com/sveltejs/template" style="user-select: initial;"
-						>sveltejs/template</a
-					> my-svelte-project
-cd my-svelte-project
+			<pre><code>npm create vite@latest my-app -- <a href="https://github.com/vitejs/vite/tree/main/packages/create-vite/template-svelte" style="user-select: initial;"
+					>--template svelte</a>
+cd my-app
 npm install
 npm run dev
 			</code></pre>
 
 			<p style="flex: 1">
-				TypeScriptサポートやその他詳細については <a href="/blog/the-easiest-way-to-get-started">クイックスタートガイド</a> をご覧ください。
+				または、Svelte チームが開発している公式アプリケーションフレームワーク <a href="https://kit.svelte.jp">SvelteKit</a> をご使用ください (現在はベータ版です)。
 			</p>
 
 			<a sveltekit:prefetch href="/tutorial" class="cta">Svelteを学ぶ</a>

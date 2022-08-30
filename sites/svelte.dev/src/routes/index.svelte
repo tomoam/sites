@@ -82,9 +82,9 @@
 		</div>
 
 		<div slot="how">
-			<pre><code>npm create vite@latest my-app -- <a href="https://github.com/vitejs/vite/tree/main/packages/create-vite/template-svelte" style="user-select: initial;"
+			<pre><code>npm create vite@latest myapp -- <a href="https://github.com/vitejs/vite/tree/main/packages/create-vite/template-svelte" style="user-select: initial;"
 					>--template svelte</a>
-cd my-app
+cd myapp
 npm install
 npm run dev
 			</code></pre>

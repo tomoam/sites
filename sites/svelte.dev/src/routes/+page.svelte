@@ -62,7 +62,7 @@
 			</p>
 
 			<p>
-				Svelteが、最近行われた2つの調査で <a
+				Svelteが、最近行われた3つの調査で <a
 					href="https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks"
 					>最も愛されているWebフレームワーク</a
 				>
@@ -70,6 +70,9 @@
 				<a href="https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/"
 					>開発者が最も満足しているフレームワーク</a
 				>
+				、<a
+					href="https://tsh.io/state-of-frontend/#which-of-the-following-frameworks-would-you-like-to-learn-in-the-future"
+					>最も学習したいフレームワーク</a>
 				にそれぞれ選出されたことを誇りに思います。あなたにもきっと気に入って頂けると思います。もっと詳しく知りたい方は
 				<a href="/blog/svelte-3-rethinking-reactivity" class="cta"
 					>こちらの紹介記事</a

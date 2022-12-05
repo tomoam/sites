@@ -57,7 +57,7 @@
 			</p>
 
 			<p>
-				Svelteは仮想DOMによる差分検出のようなテクニックを使用する代わりに、
+				Svelteは、仮想DOMによる差分検出のようなテクニックを使用する代わりに、
 				アプリケーションの状態が変化したときにDOMを外科的に更新するコードを生成します。
 			</p>
 
@@ -70,9 +70,11 @@
 				<a href="https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/"
 					>開発者が最も満足しているフレームワーク</a
 				>
-				、<a
+				、	
+				<a
 					href="https://tsh.io/state-of-frontend/#which-of-the-following-frameworks-would-you-like-to-learn-in-the-future"
-					>最も学習したいフレームワーク</a>
+					>最も学習したいフレームワーク</a
+				>
 				にそれぞれ選出されたことを誇りに思います。あなたにもきっと気に入って頂けると思います。もっと詳しく知りたい方は
 				<a href="/blog/svelte-3-rethinking-reactivity" class="cta"
 					>こちらの紹介記事</a

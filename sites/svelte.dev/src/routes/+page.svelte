@@ -84,18 +84,11 @@
 
 		<div slot="how">
 			<pre><code
-					>npm create vite@latest myapp -- <a
-						href="https://github.com/vitejs/vite/tree/main/packages/create-vite/template-svelte"
-						style="user-select: initial;">--template svelte</a
-					>
+					>npm create svelte@latest myapp
 cd myapp
 npm install
 npm run dev
 			</code></pre>
-
-			<p style="flex: 1">
-				または、Svelte チームが開発している公式アプリケーションフレームワーク <a href="https://kit.svelte.jp">SvelteKit</a> をご使用ください (現在はベータ版です)。
-			</p>
 
 			<a href="/tutorial" class="cta">Svelteを学ぶ</a>
 		</div>

@@ -5,7 +5,7 @@ author: Rich Harris
 authorURL: https://twitter.com/Rich_Harris
 ---
 > 翻訳 : Svelte日本コミュニティ  
-> 原文 : https://svelte.jp/blog/sapper-towards-the-ideal-web-app-framework
+> 原文 : https://svelte.dev/blog/sapper-towards-the-ideal-web-app-framework
 > 
 > 日本語版は原文をよりよく理解するための参考となることを目的としています。  
 > 正確な内容についてはsvelte.devの原文を参照してください。  

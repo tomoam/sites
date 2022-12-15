@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { imagetools } from 'vite-imagetools';
@@ -6,9 +7,22 @@ process.env.VITE_API_BASE = process.env.DOCS_PREVIEW
 	? 'http://localhost:8787'
 	: 'https://api.svelte.jp';
 
+function raw(ext) {
+	return {
+		name: 'vite-plugin-raw',
+		transform(_, id) {
+			if (ext.some((e) => id.endsWith(e))) {
+				const buffer = fs.readFileSync(id);
+				return { code: `export default ${JSON.stringify(buffer)}`, map: null };
+			}
+		}
+	};
+}
+
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [imagetools(), sveltekit()],
+	logLevel: 'info',
+	plugins: [raw(['.ttf']), imagetools(), sveltekit()],
 	optimizeDeps: {
 		include: [
 			'codemirror',

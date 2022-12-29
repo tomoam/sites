@@ -17,7 +17,7 @@ author: The Svelte team
 
 このリリースを皆さんに共有できることがとても嬉しいです。Svelte コアチームと広いコミュニティによる何千時間もの作業の集大成であり、小さなプロジェクトに取り組む単独の開発者であれ、大きなチームの一員であれ、本番レベル(production-grade)の Web を構築するのに最も楽しい方法だと思います。
 
-始めてみるには、`npm create svelte@latest` を実行し、[ドキュメント](https://kit.svelte.jp/docs)と、[インタラクティブなチュートリアル](https://learn.svelte.dev)を確認してみてください(インタラクティブなチュートリアルはまだ experimental です)。
+始めてみるには、`npm create svelte@latest` を実行し、[ドキュメント](https://kit.svelte.jp/docs)と、[インタラクティブなチュートリアル](https://learn.svelte.jp)を確認してみてください(インタラクティブなチュートリアルはまだ experimental です)。
 
 <div class="max">
 <figure style="max-width: 960px; margin: 0 auto">
@@ -95,7 +95,7 @@ SvelteKit プロジェクトを作成するとき、[TypeScript](https://www.typ
 
 [Vercel](https://vercel.com)、[Netlify](https://netlify.app/)、[Cloudflare](https://www.cloudflare.com/) それぞれのチームから素晴らしいサポートを受け、これらのプラットフォームへのデプロイメントをゼロコンフィグにすることができました。
 
-[StackBlitz](https://stackblitz.com/) の友人たちは、私たちにとって初となる [WebContainer](https://blog.stackblitz.com/posts/introducing-webcontainers/) を使用したインタラクティブなチュートリアルである [learn.svelte.dev](https://learn.svelte.dev) を実現するために熱心に取り組んでくれました。
+[StackBlitz](https://stackblitz.com/) の友人たちは、私たちにとって初となる [WebContainer](https://blog.stackblitz.com/posts/introducing-webcontainers/) を使用したインタラクティブなチュートリアルである [learn.svelte.dev](https://learn.svelte.dev) (日本語版: [learn.svelte.jp](https://learn.svelte.jp)) を実現するために熱心に取り組んでくれました。
 
 最後に、このプロジェクトは資金支援者の方々がいなければ実現できなかったことをお伝えします。そこには、[Open Collective](https://opencollective.com/svelte) の数百名の支援者の方々、二人のコア開発者 ([Rich](https://twitter.com/Rich_Harris/) と [Simon](https://twitter.com/dummdidumm_/)) を雇用し、フルタイムで Svelte に取り組ませてくれた Vercel、その他様々な方法 (例えば [Steph の](https://twitter.com/steph_dietz_) [Beginner SvelteKit](https://vercel.com/docs/beginner-sveltekit) コースなど) でプロジェクトを支援してくれた方々も含まれます。
 

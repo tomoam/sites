@@ -1,5 +1,5 @@
 ---
-title: "What's new in Svelte: 2023年3月"
+title: "What's new in Svelte: 2023年1月"
 description: "SvelteKit 1.0、learn.svelte.dev、そして Svelte elements の型定義"
 author: Dani Sandoval
 authorURL: https://dreamindani.com

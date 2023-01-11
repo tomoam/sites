@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年3月"
 description: "Svelte Summit Spring が近づく… そしてページエンドポイントの登場！"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 
 > 翻訳 : Svelte 日本コミュニティ  

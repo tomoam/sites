@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2021年7月"
 description: バグ修正、TypeScriptツール、および多数の新機能でクールに保つ
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 
 > 翻訳 : Svelte日本コミュニティ  

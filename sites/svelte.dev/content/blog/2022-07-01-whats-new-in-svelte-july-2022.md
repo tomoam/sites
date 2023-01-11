@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年7月"
 description: "より高速な SSR、language tools の改善と新たな paid contributor!"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-july-2022

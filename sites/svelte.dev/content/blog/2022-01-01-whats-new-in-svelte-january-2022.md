@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年1月"
 description: "SvelteKit のビルドの高速化と待望の REPL 機能"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-january-2022

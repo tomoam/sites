@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2021年9月"
 description: StackOverflowで最も愛されているWebフレームワーク
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 
 > 翻訳 : Svelte日本コミュニティ  

@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2021年12月"
 description: "Svelte Summit Fall 2021 の要約、Rich Harris が Vercel にジョイン、Kevin は Svelte Society でフルタイムに"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-december-2021

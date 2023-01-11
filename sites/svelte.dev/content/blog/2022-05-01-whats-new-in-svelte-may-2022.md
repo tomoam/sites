@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年5月"
 description: "`<svelte:element>` で動的に HTML 要素タイプを切り替える"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-may-2022

@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年11月"
 description: "SvelteKit と Svelte をまたがった、フォーム、ルート、インラインスタイルの改善"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-november-2022

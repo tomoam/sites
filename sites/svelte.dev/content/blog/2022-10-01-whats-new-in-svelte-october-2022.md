@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年10月"
 description: "Svelte Summit、`use:enhance`、そして SvelteKit Release Candidate!"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-october-2022

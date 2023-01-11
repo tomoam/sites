@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年2月"
 description: "Svelte、SvelteKit、コミュニティを横断し、畳み掛けるようにリリース"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-february-2022

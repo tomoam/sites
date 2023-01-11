@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年9月"
 description: "SvelteKit の新しいファイルシステムベースルーターへの移行"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-september-2022

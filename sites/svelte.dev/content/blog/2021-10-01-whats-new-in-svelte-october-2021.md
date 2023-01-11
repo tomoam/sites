@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2021年10月"
 description: "What's new in Svelte は1周年"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte日本コミュニティ
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-october-2021

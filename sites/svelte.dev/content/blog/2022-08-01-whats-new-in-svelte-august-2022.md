@@ -1,8 +1,8 @@
 ---
 title: "What's new in Svelte: 2022年8月"
 description: "1.0 前の SvelteKit の `load` の変更、Vite 3 サポート、そして `vite.config.js`!"
-author: Daniel Sandoval
-authorURL: https://desandoval.net
+author: Dani Sandoval
+authorURL: https://dreamindani.com
 ---
 > 翻訳 : Svelte 日本コミュニティ  
 > 原文 : https://svelte.dev/blog/whats-new-in-svelte-august-2022

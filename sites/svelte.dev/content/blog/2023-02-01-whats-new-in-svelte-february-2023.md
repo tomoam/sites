@@ -22,7 +22,7 @@ Svelte は今回も、満足度、興味、ともに上昇しました。投票�
 
 ## What's new in SvelteKit
 今月の Svelte エコシステムにおける活動は、SvelteKit のバグフィックスと  1.0 ローンチからのフィードバックに対する取り組みにフォーカスされていました。待ち望まれていた [SvelteKit の base path サポートのバグフィックス](https://github.com/sveltejs/kit/issues/2958)がリリースされたことで、リモート開発環境でも SvelteKit プロジェクトが作れるようになりました。こういったフィックスだけでなく、以下のような新機能も[リリース](https://github.com/sveltejs/kit/blob/master/packages/kit/CHANGELOG.md)されています:
-- <form method="get"> にプログレッシブ・エンハンスメントを適用している場合、submitter の値が自動的に含まれるようになりました  (**1.0.3**, [#8273](https://github.com/sveltejs/kit/pull/8273))
+- `<form method="get">` にプログレッシブ・エンハンスメントを適用している場合、submitter の値が自動的に含まれるようになりました  (**1.0.3**, [#8273](https://github.com/sveltejs/kit/pull/8273))
 - グローバルな fetch に相対 URL が使用されている場合、開発モードではエラーが追加されるようになりました (**1.0.8**, [#8370](https://github.com/sveltejs/kit/pull/8370))
 - HTML からコメントが削除された場合にハイドレーションが壊れる可能性がある、という警告が追加されました (**1.0.11**, [#8423](https://github.com/sveltejs/kit/pull/8423))
 - `.svelte` ファイルに page option が使用されている場合や、レイアウトに `<slot />` が無い場合に警告されるようになりました (**1.1.0**, [#8475](https://github.com/sveltejs/kit/pull/8475))

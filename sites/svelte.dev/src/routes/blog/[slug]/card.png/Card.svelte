@@ -48,6 +48,7 @@
 		line-height: 80px;
 		margin: 0 0 0.5em 0;
 		overflow-wrap: break-word;
+		width: 100%;
 	}
 
 	.date {

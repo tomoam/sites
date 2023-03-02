@@ -1,6 +1,8 @@
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import OverpassRegular from './Overpass-Regular.ttf';
+// https://fontsource.org/fonts/noto-sans-jp
+import NotoSansJP from './noto-sans-jp-japanese-400-normal.ttf';
 import { html as toReactNode } from 'satori-html';
 import { get_post } from '$lib/server/markdown/index.js';
 import { error } from '@sveltejs/kit';
@@ -29,7 +31,13 @@ export const GET = async ({ params, url }) => {
 				data: Buffer.from(OverpassRegular),
 				style: 'normal',
 				weight: 400
-			}
+			},
+			{
+				name: 'Noto Sans JP',
+				data: Buffer.from(NotoSansJP),
+				style: 'normal',
+				weight: 400
+			},
 		],
 		height,
 		width

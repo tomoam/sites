@@ -37,7 +37,7 @@ export const GET = async ({ params, url }) => {
 				data: Buffer.from(NotoSansJP),
 				style: 'normal',
 				weight: 400
-			},
+			}
 		],
 		height,
 		width

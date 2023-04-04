@@ -32,7 +32,7 @@ Happy April、みなさん！ 今月は、Svelte コンパイラの全ての新�
 - `bind:group` の input で、値に `undefined` がセットされたときにクリアされるようになりました (**3.56.0**, [#8214](https://github.com/sveltejs/svelte/issues/8214))
 - `{#each}` ブロック内にある、spread 属性を持つ `<input>` 要素を入れ替えたとき、その `<input>` の値が保持されるようになりました (**3.56.0**, [#7578](https://github.com/sveltejs/svelte/issues/7578))
 - 全体的に警告(warning)が改善されました - `noreferrer` から `aria` ルールまで！ (**3.56.0**)
-- <svelte:document> が追加されました (**3.57.0**, [#3310](https://github.com/sveltejs/svelte/issues/3310))
+- `<svelte:document>` が追加されました (**3.57.0**, [#3310](https://github.com/sveltejs/svelte/issues/3310))
 - `style:` ディレクティブが `style=` 属性より優先されるようになりました (**3.57.0**, [#7475](https://github.com/sveltejs/svelte/issues/7475))
 - `fly` と `blur` トランジションで CSS の単位がサポートされました (**3.57.0**, [#7623](https://github.com/sveltejs/svelte/pull/7623), [Docs](https://svelte.jp/docs#run-time-svelte-transition))
 

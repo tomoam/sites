@@ -1,12 +1,12 @@
 <script>
-	import { onMount, getContext } from 'svelte';
-	import getLocationFromStack from './getLocationFromStack.js';
+	import { BROWSER } from 'esm-env';
+	import { getContext, onMount } from 'svelte';
+	import Message from '../Message.svelte';
+	import Console from './Console.svelte';
 	import PaneWithPanel from './PaneWithPanel.svelte';
 	import ReplProxy from './ReplProxy.js';
-	import Console from './Console.svelte';
-	import Message from '../Message.svelte';
+	import getLocationFromStack from './getLocationFromStack.js';
 	import srcdoc from './srcdoc/index.html?raw';
-	import { browser } from '$app/environment';
 
 	const { bundle } = getContext('REPL');
 
@@ -201,7 +201,7 @@
 					? 'allow-same-origin'
 					: ''}"
 				class={error || pending || pending_imports ? 'greyed-out' : ''}
-				srcdoc={browser ? srcdoc : ''}
+				srcdoc={BROWSER ? srcdoc : ''}
 			/>
 		</div>
 
@@ -238,7 +238,6 @@
 	iframe {
 		width: 100%;
 		height: 100%;
-		/* height: calc(100vh - var(--nav-h)); */
 		border: none;
 		display: block;
 	}

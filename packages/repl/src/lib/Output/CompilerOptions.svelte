@@ -24,11 +24,18 @@
 		<span class="boolean">{$compile_options.dev}</span>,
 	</label>
 
-	<label class="option">
+	<div class="option">
 		<span class="key">css:</span>
-		<Checkbox bind:checked={$compile_options.css} />
-		<span class="boolean">{$compile_options.css}</span>,
-	</label>
+
+		<input id="injected-input" type="radio" bind:group={$compile_options.css} value="injected" />
+		<label for="injected-input"><span class="string">"injected"</span></label>
+
+		<input id="external-input" type="radio" bind:group={$compile_options.css} value="external" />
+		<label for="external-input"><span class="string">"external"</span></label>
+
+		<input id="none-input" type="radio" bind:group={$compile_options.css} value="none" />
+		<label for="none-input"><span class="string">"none"</span>,</label>
+	</div>
 
 	<label class="option">
 		<span class="key">hydratable:</span>
@@ -91,7 +98,7 @@
 	}
 
 	label[for] {
-		color: var(--string);
+		color: var(--sk-code-string);
 	}
 
 	label :global(input[type='checkbox']) {
@@ -140,16 +147,16 @@
 	}
 
 	input[type='radio'] + label:before {
-		background-color: var(--second);
+		background-color: var(--sk-theme-2);
 		border-radius: 100%;
 		box-shadow: inset 0 0 0 0.5em rgba(255, 255, 255, 0.95);
-		border: 1px solid var(--second);
+		border: 1px solid var(--sk-theme-2);
 	}
 
 	input[type='radio']:checked + label:before {
-		background-color: var(--prime);
+		background-color: var(--sk-theme-1);
 		box-shadow: inset 0 0 0 0.15em rgba(255, 255, 255, 0.95);
-		border: 1px solid var(--second);
+		border: 1px solid var(--sk-theme-2);
 		transition: box-shadow 0.2s ease-out;
 	}
 </style>

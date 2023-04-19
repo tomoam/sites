@@ -1,5 +1,17 @@
 # @sveltejs/repl
 
+## 0.4.0
+
+### Minor Changes
+
+- 4dd85b9: Compat with site-kit 5
+
+## 0.3.0
+
+### Minor Changes
+
+- 5cb410f: Update svelte-package, do not use sveltekit/vite specific environment stuff
+
 ## 0.2.0
 
 ### Minor Changes

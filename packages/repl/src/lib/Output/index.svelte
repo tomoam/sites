@@ -7,7 +7,7 @@
 	import Compiler from './Compiler.js';
 	import CodeMirror from '../CodeMirror.svelte';
 	import AstView from './AstView.svelte';
-	import { is_browser } from '../env.js';
+	import { BROWSER } from 'esm-env';
 
 	const { register_output, module_editor_ready } = getContext('REPL');
 
@@ -62,7 +62,7 @@
 		}
 	});
 
-	const compiler = is_browser && new Compiler(svelteUrl);
+	const compiler = BROWSER && new Compiler(svelteUrl);
 
 	// refs
 	let js_editor;
@@ -132,7 +132,7 @@
 <style>
 	.view-toggle {
 		height: 4.2rem;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid var(--sk-text-4);
 		white-space: nowrap;
 		box-sizing: border-box;
 	}
@@ -143,7 +143,7 @@
 		background: var(--sk-back-1, white);
 		text-align: left;
 		position: relative;
-		font: 400 12px/1.5 var(--font);
+		font: 400 12px/1.5 var(--sk-font);
 		border: none;
 		border-bottom: 3px solid transparent;
 		padding: 12px 12px 8px 12px;
